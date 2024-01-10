@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "MobileLearningApp"
 include(":app")
+include(":data")
+include(":domain")
+include(":analytics")

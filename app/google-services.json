@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248300091886",
+    "project_id": "gamifycodeapp",
+    "storage_bucket": "gamifycodeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248300091886:android:91693e0f3b4813f79b36ff",
+        "android_client_info": {
+          "package_name": "com.example.mobilelearningapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0gtW-q1iuId96Ls1ecry9MupQTcTvf7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
