@@ -42,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
@@ -62,6 +63,7 @@ dependencies {
     implementation(Dependencies.timber)
     implementation(Dependencies.mockito)
     domain()
+    firebase()
     analytics()
     retrofit()
     hilt()

@@ -13,4 +13,5 @@ dependencies {
     retrofit()
     hilt()
     junit()
+    firebase()
 }
