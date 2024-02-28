@@ -51,9 +51,11 @@ object Dependencies {
         "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsGradle}"
     const val firebaseAnalytics =
         "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
-
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinGradlePlugin}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
+    const val navigationCompose = "androidx.navigation:navigation-compose:2.7.7"
+    const val lottieCompose = "com.airbnb.android:lottie-compose:5.2.0"
 }
 
 fun DependencyHandler.junit() {

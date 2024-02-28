@@ -22,6 +22,7 @@ object Versions {
     const val firebaseCrashlytics = "18.6.0"
     const val firebaseCrashlyticsGradle = "2.9.9"
     const val firebaseAnalytics = "21.5.0"
+    const val splashScreen = "1.0.1"
     const val firebaseAuth = "22.3.0"
     const val firebaseCommon = "20.4.2"
 }
