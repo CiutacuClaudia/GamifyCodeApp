@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.airbnb.lottie.BuildConfig
 import com.example.mobilelearningapp.ui.theme.MobileLearningAppTheme
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,32 +26,13 @@ class MainActivity : ComponentActivity() {
                 plant(Timber.DebugTree())
             }
             MobileLearningAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-//                    RegisterScreenPreview()
                     NavGraph(rememberNavController())
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MobileLearningAppTheme {
-        Greeting("Android")
     }
 }

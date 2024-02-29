@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
@@ -15,6 +14,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -31,11 +31,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.example.mobilelearningapp.R
+import com.example.mobilelearningapp.ui.navigation.Route
 import com.example.mobilelearningapp.utils.Dimensions.padding16
 import com.example.mobilelearningapp.viewmodels.RegisterViewModel
 import timber.log.Timber
@@ -43,13 +43,13 @@ import timber.log.Timber
 @SuppressLint("TimberArgCount")
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun RegisterScreen(viewModel: RegisterViewModel) {
+fun RegisterScreen(viewModel: RegisterViewModel, navController: NavHostController) {
     val keyboardController = LocalSoftwareKeyboardController.current
-
     val email by viewModel.email.collectAsState()
     val username by viewModel.username.collectAsState()
     val password by viewModel.password.collectAsState()
     val confirmPassword by viewModel.confirmPassword.collectAsState()
+    val isRegisterButtonEnabled by viewModel.isRegisterButtonEnabled.collectAsState()
 
     val emailError by viewModel.emailError.collectAsState()
     val usernameError by viewModel.usernameError.collectAsState()
@@ -57,8 +57,7 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
     val confirmPasswordError by viewModel.confirmPasswordError.collectAsState()
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         val focusManager = LocalFocusManager.current
         Column(
@@ -172,30 +171,27 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
                 keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Done
                 ),
-                keyboardActions = KeyboardActions(
-                    onDone = {
-                        keyboardController?.hide()
-                        viewModel.registerUser(email, password, username)
-                    }
-                )
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                    viewModel.registerUser(email, password, username)
+                })
             )
 
             Button(
                 onClick = {
                     Timber.tag("Test2").d("$email, $password, $username")
-                    viewModel.registerUser(email, password, username)
+                        navController.navigate(Route.HomeScreen.route)
+                        viewModel.registerUser(email, password, username)
                 },
+                enabled = isRegisterButtonEnabled
             ) {
                 Text("Register")
             }
-
+            TextButton(onClick = {
+                navController.navigate(Route.LoginScreen.route)
+            }) {
+                Text(text = "Already have an account?")
+            }
         }
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun RegisterScreenPreview() {
-    val viewModel: RegisterViewModel = hiltViewModel()
-    RegisterScreen(viewModel = viewModel)
 }

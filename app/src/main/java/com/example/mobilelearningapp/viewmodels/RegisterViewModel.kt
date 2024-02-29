@@ -1,10 +1,10 @@
 package com.example.mobilelearningapp.viewmodels
 
-import com.example.mobilelearningapp.utils.ResourceProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecases.RegisterUseCase
 import com.example.mobilelearningapp.R
+import com.example.mobilelearningapp.utils.ResourceProvider
 import com.example.mobilelearningapp.utils.ValidationFields
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,6 +42,8 @@ class RegisterViewModel @Inject constructor(
     private val _confirmPasswordError = MutableStateFlow<String?>(null)
     val confirmPasswordError = _confirmPasswordError.asStateFlow()
 
+    private val _isRegisterButtonEnabled = MutableStateFlow(false)
+    val isRegisterButtonEnabled = _isRegisterButtonEnabled.asStateFlow()
     fun setUsername(username: String) {
         _username.tryEmit(username)
         if (ValidationFields.validateUsername(username)) {
@@ -49,6 +51,7 @@ class RegisterViewModel @Inject constructor(
         } else {
             _usernameError.tryEmit(resourceProvider.getString(R.string.username_validation))
         }
+        enableRegisterButton()
     }
 
     fun setEmail(email: String) {
@@ -58,6 +61,7 @@ class RegisterViewModel @Inject constructor(
         } else {
             _emailError.tryEmit(resourceProvider.getString(R.string.email_validation))
         }
+        enableRegisterButton()
     }
 
     fun setPassword(password: String) {
@@ -67,6 +71,7 @@ class RegisterViewModel @Inject constructor(
         } else {
             _passwordError.tryEmit(resourceProvider.getString(R.string.password_validation))
         }
+        enableRegisterButton()
     }
 
     fun setConfirmPassword(confirmPassword: String) {
@@ -75,6 +80,16 @@ class RegisterViewModel @Inject constructor(
             _confirmPasswordError.tryEmit(null)
         } else {
             _confirmPasswordError.tryEmit(resourceProvider.getString(R.string.confirmPassword_validation))
+        }
+        enableRegisterButton()
+    }
+
+    private fun enableRegisterButton(){
+        if (_emailError.value.isNullOrBlank() && _passwordError.value.isNullOrBlank() &&
+            _usernameError.value.isNullOrBlank() && _confirmPasswordError.value.isNullOrBlank()&&
+            _email.value.isNotEmpty() && _password.value.isNotEmpty()&&
+            _confirmPassword.value.isNotEmpty()&&_username.value.isNotEmpty()) {
+            _isRegisterButtonEnabled.value = true
         }
     }
 
