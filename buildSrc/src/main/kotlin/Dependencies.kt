@@ -24,8 +24,10 @@ object Dependencies {
     const val testEspresso = "androidx.test.espresso:espresso-core:${Versions.testEspresso}"
 
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val  a = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+    const val hiltNavCompose =   "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavCompose}"
 
     const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
     const val okHttpLoggingInterceptor =
@@ -40,6 +42,9 @@ object Dependencies {
 
     const val googleServices = "com.google.gms:google-services:${Versions.googleServices}"
 
+    const val firebaseAuth =
+        "com.google.firebase:firebase-auth-ktx:${Versions.firebaseAuth}"
+    const val firebaseCommon = "com.google.firebase:firebase-common-ktx:${Versions.firebaseCommon}"
     const val firebaseCrashlytics =
         "com.google.firebase:firebase-crashlytics:${Versions.firebaseCrashlytics}"
     const val firebaseCrashlyticsGradle =
@@ -81,8 +86,16 @@ fun DependencyHandler.compose() {
     androidTestImplementation(Dependencies.composeUIJunit4)
 }
 
+fun DependencyHandler.firebase() {
+    implementation(Dependencies.firebaseAuth)
+    implementation(Dependencies.firebaseAnalytics)
+    implementation(Dependencies.firebaseCrashlytics)
+    implementation(Dependencies.firebaseCommon)
+}
+
 fun DependencyHandler.hilt() {
     implementation(Dependencies.hiltAndroid)
+    implementation(Dependencies.hiltNavCompose)
     kapt(Dependencies.hiltCompiler)
 }
 

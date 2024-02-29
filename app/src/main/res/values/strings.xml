@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MobileLearningApp</string>
+    <string name="username_validation">Username must be minimum 3 characters long</string>
+    <string name="email_validation">Incorrect email format</string>
+    <string name="password_validation">Password must: be 8 characters long, have minimum one uppercase &amp; one lowercase &amp; one special character</string>
+    <string name="confirmPassword_validation">Passwords don\'t match</string>
 </resources>

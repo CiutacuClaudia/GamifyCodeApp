@@ -15,6 +15,7 @@ object Versions {
     const val timber = "5.0.1"
     const val mockito = "5.8.0"
     const val hilt = "2.49"
+    const val hiltNavCompose = "1.1.0"
     const val okHttp = "4.12.0"
     const val retrofit = "2.9.0"
     const val googleServices = "4.3.15"
@@ -22,4 +23,6 @@ object Versions {
     const val firebaseCrashlyticsGradle = "2.9.9"
     const val firebaseAnalytics = "21.5.0"
     const val splashScreen = "1.0.1"
+    const val firebaseAuth = "22.3.0"
+    const val firebaseCommon = "20.4.2"
 }

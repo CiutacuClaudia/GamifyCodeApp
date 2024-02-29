@@ -42,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
@@ -65,6 +66,7 @@ dependencies {
     implementation(Dependencies.navigationCompose)
     implementation(Dependencies.lottieCompose)
     domain()
+    firebase()
     analytics()
     retrofit()
     hilt()
